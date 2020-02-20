@@ -11,6 +11,7 @@
   "author": "Lucas Mourão Lopes",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^17.1.0",
     "convict": "^5.2.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
