@@ -1,26 +1,35 @@
 const nodemailer = require('nodemailer');
-const config = require('./config');
-const template = require('./template');
+const configTransporter = require('./config');
+const config = require('../../config');
+
+const companyName = config.get('transporter.name');
+const transporter = nodemailer.createTransport(configTransporter);
 
 module.exports = {
-  sendEmail: async () => {
-    const transporter = nodemailer.createTransport(config);
+  sendEmail: async (obj) => {
+    const { to, subject, body, attachments } = obj;
+
+    const mailOptions = {
+      from: `${companyName} <${configTransporter.auth.email}>`,
+      to,
+      subject,
+      html: body,
+    };
+
+    const mailOptionsWithAttachment = {
+      ...mailOptions,
+      attachments,
+    };
+
     try {
-     await transporter.sendMail({
-        from: 'Conex Code <conexcode@gmail.com>',
-        to: 'lucasmouraolopes@gmail.com',
-        subject: 'Email de teste',
-        html: template.body,
-        attachments: [
-          {   
-            path: '/home/lucas/Downloads/nodeMailer/attachments/test.txt'
-          },
-        ],
-      })
+      let parsedMailOptions = mailOptions;
+      if (attachments !== null) {
+        parsedMailOptions = mailOptionsWithAttachment;
+      }
+      await transporter.sendMail(parsedMailOptions);
       return true;
     } catch (err) {
-      console.log(err);
-      return false;
+      return err;
     }
-  }
+  },
 };
