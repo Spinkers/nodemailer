@@ -52,6 +52,12 @@ const config = convict({
         env: 'NODEMAILER_TRANSPORTER_PASSWORD',
       },
     },
+    name: {
+      doc: 'company name',
+      format: String,
+      default: '',
+      env: 'NODEMAILER_TRANSPORTER_COMPANY_NAME',
+    },
   },
 });
 
