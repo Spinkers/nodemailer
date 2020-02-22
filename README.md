@@ -1,4 +1,4 @@
-# Welcome to nodemailer overview
+# Visão geral da biblioteca nodemailer
 
 É comum que precisemos implementar um endpoint de enviar emails em nosso sistema, seja para enviar um email de boas vindas após o cadastro de um novo usuário, enviar a fatura todo dia 30 aos clientes ou até mesmo para integrar com o sistema de recuperação de senhas.
 
