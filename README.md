@@ -218,7 +218,12 @@ module.exports = {
 
 O **service.js** é certamente a parte mais legal de todas, por tanto vamos com calma, parte por parte:
 
-Após receber o obj, fazemos uma desestruturação:
+Primeiro criamos um transporter recebendo como parametro aquelas variáveis de ambiente já citadas anteriormente:
+```javascript
+const transporter = nodemailer.createTransport(configTransporter);
+```
+
+Fazemos uma desestruturação daquilo que recebemos:
 ```javascript
 const { to, subject, body, attachments } = obj;
 ```
